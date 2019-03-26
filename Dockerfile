@@ -14,5 +14,4 @@ RUN autoconf
 RUN ./configure
 RUN make
 RUN make install
-RUN STRDenovoTools --help
 WORKDIR ..
