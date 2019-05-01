@@ -23,7 +23,7 @@ def main():
 
     # Load all de novo mutation
     mutations = pd.read_table(os.path.join(args.MUT_FILE), sep="\t")
-    mutations["chrom"] = mutations["chrom"].map(lambda x: int(x.lstrip("chr")))
+    mutations["chrom"] = mutations["chrom"].map(lambda x: x.lstrip("chr"))
     mutations["str_id"] = mutations.apply(lambda x: str(x["chrom"])+"_"+str(x["pos"]), axis=1) #apply fn to each row
 
     # Log summary statistics before filtering
@@ -37,7 +37,7 @@ def main():
         mutations["unit"] = mutations["mutsize"]%mutations["period"] == 0
         n_step_removed = len(mutations[~mutations.unit])
         mutations = mutations[mutations.unit]
-        
+
 
     # Exclude dn STRs based on posterior threshold
     if args.POSTERIOR_THRESH > 0:
