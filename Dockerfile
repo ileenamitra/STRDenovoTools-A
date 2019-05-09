@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 FROM gymreklab/str-toolkit-2.4:latest
+=======
+FROM gymreklab/str-toolkit:latest
+>>>>>>> 93385b86940a8ec2595b47e0147b9e1e8f33ab26
 
 # Get necessary packages
 RUN apt-get install -qqy \
   autotools-dev \
   automake \
+<<<<<<< HEAD
   libtool libtool-bin \
   libgsl-dev
 
@@ -30,6 +35,15 @@ WORKDIR ..
 RUN git clone https://github.com/gymreklab/STRDenovoTools
 WORKDIR STRDenovoTools
 RUN ./reconf
+=======
+  libgsl-dev
+
+# Download, compile, and install CookieMonSTR
+RUN git clone https://github.com/gymreklab/STRDenovoTools
+WORKDIR STRDenovoTools
+RUN autoreconf --install
+RUN autoconf
+>>>>>>> 93385b86940a8ec2595b47e0147b9e1e8f33ab26
 RUN ./configure
 RUN make
 RUN make install
